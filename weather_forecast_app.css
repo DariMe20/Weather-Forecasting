@@ -1,0 +1,39 @@
+body{
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    margin:0;
+    padding:0;
+
+}
+
+.header_search{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-top:5px;
+}
+.upper-side{
+    display:flex;
+    flex-direction: row;
+    position:relative;
+    justify-content: center;
+    height:fit-content;
+}
+
+.currentWeather-container{
+    border:1px solid black;
+    position: relative;
+    width: fit-content;
+    left:15px;
+}
+
+.currentWeather-container .today-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items:center;
+    
+}
