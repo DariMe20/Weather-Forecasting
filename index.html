@@ -32,9 +32,9 @@
         <!-- SECTIUNE PENTRU SEARCH BAR -->
         <div class="header_search">
             <form action="" class="search" id="search">
-            <input type="text" id="query" placeholder="Search city">
-        </form>
-        <button type="button"><i class="fas fa-search"></i></button>
+                <input type="text" id="query" placeholder="Search city">
+            </form>
+            <button type="button"><i class="fas fa-search"></i></button>
         </div>
 
         <!-- UPPER SIDE -->
@@ -50,14 +50,21 @@
             <!-- SECTIUNE PENTRU CURRENT WEATHER DIV (DIV FOR CURRENT WEATHER) -->
             <div class="currentWeather-container">
 
-                <h4 class="today_curr_weather">Current weather</h4>
-                <p id="azi"></p>
-                <h2 class="city">Cluj-Napoca</h2>
+                <h4 id="today_curr_weather">Current weather</h4>
+                <p id="date-today">Monday, 12:00</p>
+                <div class="location">
+                    <h2 id="city">Cluj-Napoca</h2>
+                </div>
+
                 <div class="today-info">
-                    <div class="weather-icon"><img src="photos/sunny.png" alt="Rain icon" id="icon"></div>
-                    
-                    <h1 class="temp">22°C</h1>
-                    <p id="description">Today is rainy</p>
+                    <div class="weather-icon"><img src="photos/rainy.png" alt="Weather icon" id="icon"></div>
+
+                    <div class="temperature">
+                        <h1 id="temp">0</h1>
+                        <span class="temp-unit">°C</span>
+                    </div>
+
+                    <p id="description">Condition</p>
 
                 </div>
             </div>
