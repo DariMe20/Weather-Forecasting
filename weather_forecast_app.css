@@ -140,7 +140,7 @@ img{
     border-radius: 50px;
     position: relative;
     width: 60%;
-    padding:25px 25px 0 25px;
+    padding:25px 25px 0px 25px;
     height:max-content;
     left:25px;
     background-image: linear-gradient(rgba(5, 19, 84, 1), rgb(52, 40, 80,0.8));
@@ -151,6 +151,12 @@ img{
     padding: 2px 0px 15px 0 ;
 }
 
+.weather-icon{
+    width:150px;
+    align-items: center;
+    position: relative;
+
+}
 .currentWeather-container .today-info{
     display: flex;
     flex-direction: row;
@@ -166,7 +172,7 @@ img{
 }
 
 .temperature #temp{
-    font-size: 70px;
+    font-size: 50px;
     font-weight: 100;
     line-height: 1;
 }

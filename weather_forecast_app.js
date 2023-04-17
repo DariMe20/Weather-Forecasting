@@ -13,7 +13,8 @@ humidityStatus = document.querySelector(".humidity-text"),
 visibility = document.querySelector(".visibility"),
 visibilityStatus = document.querySelector(".visibility-text"),
 airQuality = document.querySelector(".air-quality"),
-airQualityStatus = document.querySelector(".quality-text");
+airQualityStatus = document.querySelector(".quality-text"),
+weatherCards = document.querySelector("#weather-card");
 
 
 let currentCity = "";
@@ -98,6 +99,8 @@ function getWeatherData (city){
         sunRise.innerText =formatTime(today.sunrise);
         sunSet.innerText = formatTime(today.sunset);
         mainIcon.src = getIcon(today.icon);
+        updateForecast(data.days[0].hours, "day");
+        UpdateForecast(data.days, "week");
     });
    
 
@@ -232,3 +235,44 @@ function getIcon(condition){
     else
          return "photos/cloudy.png";
 }
+
+//Function to get name of a day
+function getDayName(date){
+    let day = new Date(date);
+    let days = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thrusday",
+        "Friday",
+        "Saturday"
+    ];
+    return days[day.getDay()];
+}
+//function to update forecast for hours or days
+function updateForecast(data, type){
+    weatherCards.innerHTML = "";
+
+    let day = 0;
+    let numCards = 0;
+    if(type == "day"){
+        numCards = 12;
+    }else{
+        numCards = 7;
+    }
+
+    for(let i=0; i<numCards;i++){
+        let card = document.createElement("div");
+        card.classList.add("card");
+        let dayName = getDayName(data[day].datetime);
+        if(type == "week"){
+            dayName = "";
+        }
+        let dayTemp = data[day].temp;
+        let iconCondition = data[day].icon;
+        let iconSrc = getIcon(iconCondition);
+        
+    }
+}
+
