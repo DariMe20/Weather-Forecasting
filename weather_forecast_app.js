@@ -130,4 +130,42 @@ function updateHumidityStatus(humidity){
     else{
         humidityStatus.innerText = "High";
     }
+};
+
+//function to measure visibility and return status
+function updateVisibilityStatus(visibility)
+{
+    if(visibility <= 0.3)
+    {
+        visibilityStatus.innerText = "Dense fog";
+    }
+    else if(visibility <= 0.16)
+    {
+        visibilityStatus.innerText = "Moderate Fog";
+    }
+    else if(visibility <= 0.35)
+    {
+        visibilityStatus.innerText = "Light Fog";
+    }
+    else if(visibility <= 1.13)
+    {
+        visibilityStatus.innerText = "Very Light Fog";
+    }
+    else if(visibility <= 2.16)
+    {
+        visibilityStatus.innerText = "Light Mist";
+    }
+    else if(visibility <= 5.4)
+    {
+        visibilityStatus.innerText = "Very Light Mist";
+    }
+    else if(visibility <= 10.8)
+    {
+        visibilityStatus.innerText = "Clear Air";
+    }
+    else 
+    {
+        visibilityStatus.innerText = "Very Clear Air";
+    }
 }
+
