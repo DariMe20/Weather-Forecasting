@@ -1,5 +1,5 @@
 :root{
-    --primary-clr: #599bff;
+    --primary-clr: #d7e3ea;
 }
 *{
     margin:0;
@@ -10,25 +10,28 @@ body{
     display:flex;
     justify-content: center;
     flex-direction: column;
-    box-sizing: border-box;
+    
     font-family:Arial, Helvetica, sans-serif;
     background-color: var(--primary-clr);
-    background-image: linear-gradient((rgba 0,0,0,0.5),(0,0,0,0.5), url("./photos/cloudy2.png"));
+    background-image: url(https://wallpaperboat.com/wp-content/uploads/2021/04/14/75026/sunny-day-08.jpg);
     transition: background-image 0.3s ease;
     padding:20px;
 }
+img{
+    width:100%;
+}
+
 
 .wrapper{
     display:flex;
     flex-direction: column;
-    height: 1200px;
-    min-height: 900px;
+    height: max-content;
     width:900px;
     margin:auto;
     border-radius: 20px;
     overflow: hidden;
-    border:1px solid black; 
-    background-color: rgba(255, 255, 255, 0.815);
+    /* border:1px solid rgb(60, 60, 60);  */
+    background-color: rgba(255, 255, 255, 0.315);
 }
 
 
@@ -44,7 +47,7 @@ body{
 .header_search input{
     width:100%;
     height: 30px;
-    border: 1px solid #ced4da;
+    border: 1px solid #80858a;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     padding:0 15px;
@@ -55,7 +58,7 @@ body{
 
 .header_search input:focus{
     outline:none;
-    border: 1px solid var(--primary-clr);
+    border: 2px solid var(--primary-clr);
 }
 
 .header_search button{
@@ -64,7 +67,7 @@ body{
     border:none;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    background-color: var(--primary-clr);
+    background-color:  rgb(26, 40, 108);
     cursor:pointer;
     font-size: 14px;
     color:white;
@@ -77,18 +80,19 @@ body{
     align-items: center;
     position:relative;
     height:max-content;
-    padding:35px;
+    padding:35px 35px 5px 35px;
 }
 
 .currentWeather-container{
-    border:2px solid  rgba(255, 255, 255, 0.815);
-    box-shadow: 0px 3px 2px 3px rgb(191, 186, 186);
+    border:2px solid  rgba(247, 247, 255, 0.815);
+
     border-radius: 50px;
     position: relative;
     width: 100%;
     padding:25px;
     left:15px;
-    background-image: linear-gradient(rgba(113, 140, 246, 0.366), rgba(234, 234, 234, 0.8));
+    background-image: linear-gradient(rgba(5, 19, 84, 1), rgb(52, 40, 80,0.8));
+    color:white;
 }
 
 #date-today{
@@ -133,3 +137,11 @@ body{
     text-align: justify;
 }
 
+.lower-side{
+    width:100%;
+    border:1px solid red;
+    height: 350px;
+    background-color: rgba(255, 255, 255, 0.815);
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
