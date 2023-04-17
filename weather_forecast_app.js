@@ -93,6 +93,8 @@ function getWeatherData (city){
         airQuality.innerText = today.winddir;
         measureUVIndex(today.uvindex);
         updateHumidityStatus(today.humidity);
+        updateVisibilityStatus(today.visibility);
+        updateAirQualityStatus(today.winddir);
     });
    
 
@@ -114,5 +116,18 @@ function measureUVIndex(uvIndex){
     }
     else{
         uvText.innerText = "Extreme";
+    }
+}
+
+//function to measure humidity and return status
+function updateHumidityStatus(humidity){
+    if(humidity <= 30){
+        humidityStatus.innerText = "Low";
+    }
+    else if(humidity <= 60){
+        humidityStatus.innerText = "Moderate";
+    }
+    else{
+        humidityStatus.innerText = "High";
     }
 }
