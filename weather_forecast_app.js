@@ -95,6 +95,9 @@ function getWeatherData (city){
         updateHumidityStatus(today.humidity);
         updateVisibilityStatus(today.visibility);
         updateAirQualityStatus(today.winddir);
+        sunRise.innerText =formatTime(today.sunrise);
+        sunSet.innerText = formatTime(today.sunset);
+
     });
    
 
@@ -184,7 +187,13 @@ function updateAirQualityStatus(airQuality){
         airQualityStatus.innerText = "Unhealthy";
     }
     else if(airQuality<= 250){
-        airQualityStatus.innerText = "Very low quality";
+        airQualityStatus.innerText = "Hazardous";
     }
+}
 
+function formatTime(time){
+    let hour = time.split(":")[0];
+    let minute = time.split(":")[1];
+    let newTime = hour + ":" + minute;
+    return newTime;
 }
