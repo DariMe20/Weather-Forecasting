@@ -8,6 +8,7 @@
 }
 body{
     display:flex;
+    flex-wrap: wrap;
     justify-content: center;
     flex-direction: column;
     
@@ -101,12 +102,12 @@ img{
     display:flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap:30px;
+    gap:20px;
     text-align: center;
 } 
 
 .todayInfo-container .cards .card2{
-    width:100px;
+    width:fit-content;
     height:80px;
     border-radius: 20px;
     color:#1a1a1a;
@@ -119,12 +120,12 @@ img{
 
 .card2 .card-heading{
     color: #c2c2c2;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .card2 .content p:first-child{
     text-align: center;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .card2 .content p:last-child{
