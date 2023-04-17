@@ -1,5 +1,19 @@
 const temp = document.getElementById("temp");
 const date = document.getElementById("date-today");
+const currentLocation = document.getElementById("city");
+const condition = document.getElementById("description"),
+mainIcon = document.getElementById("icon"),
+uvIndex = document.querySelector(".uv-index"),
+uvText = document.querySelector(".uv-text"),
+windSpeed = document.querySelector(".wind-status"),
+sunRise = document.querySelector(".sunrise"),
+sunSet = document.querySelector(".sunset"),
+humidity= document.querySelector(".humidity"),
+humidityStatus = document.querySelector(".humidity-text"),
+visibility = document.querySelector(".visibility"),
+visibilityStatus = document.querySelector(".visibility-text"),
+airQuality = document.querySelector(".air-quality"),
+airQualityStatus = document.querySelector(".cuality-text");
 
 
 let currentCity = "";
@@ -31,7 +45,7 @@ function getDateTime() {
     }
 
     let dayString = days[now.getDay()];
-    return `${dayString},${hour}:${minute}`;
+    return `${dayString}, ${hour}:${minute}`;
 }
 
 date.innerText = getDateTime();
@@ -70,6 +84,13 @@ function getWeatherData (city){
     .then((data) => {
         let today = data.currentConditions;
         temp.innerText = today.temp;
+        currentLocation.innerText = data.resolvedAddress;
+        condition.innerText = today.conditions;
+        uvIndex.innerText = today.uvindex;
+        windSpeed.innerText = today.windspeed;
+        humidity.innerText = today.humidity + "%";
+        visibility.innerText = today.visibility;
+        airQuality.innerText = today.windir;
 
     });
    
