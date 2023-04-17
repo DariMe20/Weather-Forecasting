@@ -206,12 +206,24 @@ img{
     border-bottom-left-radius: 20px;
 }
 
-.weekDays-container .cards{
+.weekDays-container{
+    display:flex;
+    flex-wrap:wrap;
+    flex-direction: row;
+    margin-bottom:30px;
+    position: relative;
+    height:150px;
+}
+.cards{
     display:flex;
     flex-wrap:wrap;
     gap:20px;
-    margin-top: 50px;
+    margin-top: 0px;
+    align-items: center;
+    margin:auto;
+
 }
+
 
 .cards .card{
     width:100px;
@@ -221,8 +233,10 @@ img{
     background-color: #fff;
     text-align: center;
     padding: 10px 0;
+
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: space-between;
 }
 
@@ -243,3 +257,11 @@ img{
     justify-content: center;
 }
 
+.hourly-container{
+    display:flex;
+    flex-wrap:wrap;
+    flex-direction: row;
+    position: relative;
+    height:150px;
+    margin-bottom: 0;
+}
