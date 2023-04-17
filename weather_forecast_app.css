@@ -83,24 +83,65 @@ img{
     padding:5px 35px 5px 35px;
 }
 
+
 .todayInfo-container{
     border:2px solid  rgba(247, 247, 255, 0.815);
     border-radius: 50px;
     position: relative;
-    width: 100%;
+    height: fit-content;
     padding:25px;
     right:15px;
     background-image: linear-gradient(rgb(255, 255, 255,0.815), rgba(196, 186, 219, 0.8));
-    color:white;
+    
 
 }
+.todayInfo-container .cards{
+    position: relative;
+    top:10px;
+    display:flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap:30px;
+    text-align: center;
+} 
+
+.todayInfo-container .cards .card2{
+    width:100px;
+    height:80px;
+    border-radius: 20px;
+    color:#1a1a1a;
+    background-color: #fff;
+    padding:10px 20px;
+    display:flex;
+    flex-direction: column;
+
+}
+
+.card2 .card-heading{
+    color: #c2c2c2;
+    font-size: 14px;
+}
+
+.card2 .content p:first-child{
+    text-align: center;
+    font-size: 30px;
+}
+
+.card2 .content p:last-child{
+    text-align: center;
+    font-size: 12px;
+    margin-top:2px;
+}
+
+
 .currentWeather-container{
     border:2px solid  rgba(247, 247, 255, 0.815);
     border-radius: 50px;
     position: relative;
-    width: 100%;
-    padding:25px;
-    left:15px;
+    width: 60%;
+    padding:25px 25px 0 25px;
+    height:max-content;
+    left:25px;
     background-image: linear-gradient(rgba(5, 19, 84, 1), rgb(52, 40, 80,0.8));
     color:white;
 }
@@ -151,9 +192,9 @@ img{
     display:flex;
     flex-direction: column;
     width:100%;
-    border:1px solid red;
+
     height: 350px;
-    background-color: rgba(255, 255, 255, 0.915);
+    /* background-color: rgba(255, 255, 255, 0.915); */
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
 }
