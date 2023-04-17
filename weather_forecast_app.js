@@ -13,7 +13,7 @@ humidityStatus = document.querySelector(".humidity-text"),
 visibility = document.querySelector(".visibility"),
 visibilityStatus = document.querySelector(".visibility-text"),
 airQuality = document.querySelector(".air-quality"),
-airQualityStatus = document.querySelector(".cuality-text");
+airQualityStatus = document.querySelector(".quality-text");
 
 
 let currentCity = "";
@@ -169,3 +169,22 @@ function updateVisibilityStatus(visibility)
     }
 }
 
+//function to update air quality status
+function updateAirQualityStatus(airQuality){
+    if(airQuality<= 50){
+        airQualityStatus.innerText = "Good";
+    }
+    else if(airQuality<= 100){
+        airQualityStatus.innerText = "Moderate";
+    }
+    else if(airQuality<= 150){
+        airQualityStatus.innerText = "Unhealthy for sensitive people";
+    }
+    else if(airQuality<= 200){
+        airQualityStatus.innerText = "Unhealthy";
+    }
+    else if(airQuality<= 250){
+        airQualityStatus.innerText = "Very low quality";
+    }
+
+}
