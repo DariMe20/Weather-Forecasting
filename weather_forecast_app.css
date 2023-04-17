@@ -1,10 +1,30 @@
+:root{
+    --primary-clr: #8ea0bb;
+}
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
 body{
     display:flex;
     justify-content: center;
     flex-direction: column;
-    margin:0;
-    padding:0;
+    box-sizing: border-box;
+    font-family:Arial, Helvetica, sans-serif;
+    background-color: var(--primary-clr);
+    background-image: linear-gradient((rgba 0,0,0,0.5),(0,0,0,0.5), url("./photos/cloudy2.png"));
+    transition: background-image 0.3s ease;
+    padding:20px;
+}
 
+.wrapper{
+    display:flex;
+    flex-direction: column;
+    width: 1200px;
+    min-width: 900px;
+    border-radius: 20px;
+    overflow: hidden;
 }
 
 .header_search{
@@ -14,6 +34,7 @@ body{
     justify-content: center;
     margin-bottom: 20px;
     margin-top:5px;
+
 }
 .upper-side{
     display:flex;
@@ -21,6 +42,14 @@ body{
     position:relative;
     justify-content: center;
     height:fit-content;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    padding:35px;
+    border:1px solid black;
+    border-radius: 15% 15% 0 0 ;
+
+    background-color: rgba(255, 255, 255, 0.4);
 }
 
 .currentWeather-container{
@@ -37,3 +66,4 @@ body{
     align-items:center;
     
 }
+
