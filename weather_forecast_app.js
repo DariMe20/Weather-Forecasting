@@ -97,7 +97,7 @@ function getWeatherData (city){
         updateAirQualityStatus(today.winddir);
         sunRise.innerText =formatTime(today.sunrise);
         sunSet.innerText = formatTime(today.sunset);
-
+        mainIcon.src = getIcon(today.icon);
     });
    
 
@@ -196,4 +196,39 @@ function formatTime(time){
     let minute = time.split(":")[1];
     let newTime = hour + ":" + minute;
     return newTime;
+}
+
+function getIcon(condition){
+    if(condition == "partly-cloudy-day"){
+        return "photos/sun_clouds.png";
+    }
+    else if(condition == "partly-cludy-night"){
+        return "photos/coudy_night.png";
+    }
+    else if(condition == "rain"){
+        return "photos/rainy2.png";
+    }
+    else if(condition == "clear-day"){
+        return "photos/sunny.png";
+    }
+    else if(condition == "clear-night"){
+        return "photos/moon.png";
+    }
+    else if(condition == "cloudy"){
+        return "photos/cloudy.png";
+    }
+    else if(condition == "snow"){
+        return "photos/snowy.png";
+    }
+    else if(condition == "wind"){
+        return "photos/windy.png";
+    }
+    else if(condition == "fog"){
+        return "photos/cloudy2.png";
+    }
+    else if(condition == "thunder-rain"){
+        return "photos/thunderstorm.png";
+    }
+    else
+         return "photos/cloudy.png";
 }
