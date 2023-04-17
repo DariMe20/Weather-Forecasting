@@ -35,7 +35,16 @@
 
         <!-- UPPER SIDE -->
         <div class="upper-side">
-           
+
+            <!-- DIV PENTRU INFORMATIILE ZILE CURENTE (TODAY'S HIGHLITS CONTAINER) -->
+            <div class="todayInfo-container">
+                <div class="UvIndex"></div>
+                <div class="WindStatus"></div>
+                <div class="SunriseSunset"></div>
+                <div class="Humidity"></div>
+                <div class="Visibility"></div>
+                <div class="AirQuality"></div>
+            </div>
 
             <!-- SECTIUNE PENTRU CURRENT WEATHER DIV (DIV FOR CURRENT WEATHER) -->
             <div class="currentWeather-container">
@@ -63,18 +72,30 @@
         <!-- LOWER SIDE -->
 
         <div class="lower-side">
-            <!-- DIV PENTRU PREVIZIUNI PE 5 ZILE (5 DAYS FORECAST CONTAINER)-->
-            <div class="fiveDays-container">
+            <!-- DIV PENTRU PREVIZIUNI PE 7 ZILE (7 DAYS FORECAST CONTAINER)-->
+            <div class="weekDays-container">
+                <div class="cards" id="weather-card">
+                    <div class="card">
+                        <h2 class="day-name">Monday</h2>
+                        <div class="card-icon">
+                            <img src="photos/coudy_night.png" alt="weather image">
+                        </div>
+                        <div class="day-temp">
+                            <h2 class="temp"> 32 </h2>
+                            <span class="temp-unit">°C</span>
+                        </div>
+                    </div>
+
+                </div>
 
             </div>
 
             <!-- DIV PENTRU PREVIZIUNI PE ORA (HOURLY FORECAST CONTAINER) -->
             <div class="hourly-container"></div>
 
-            <!-- DIV PENTRU INFORMATIILE ZILE CURENTE (TODAY'S HIGHLITS CONTAINER) -->
-            <div class="todayInfo-container"></div>
 
-            <!-- <a href="http://www.freepik.com">Designed by Bamdewanto / Freepik</a> -->
+
+
         </div>
     </div>
 
