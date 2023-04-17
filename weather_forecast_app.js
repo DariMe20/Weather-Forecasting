@@ -14,7 +14,9 @@ const condition = document.getElementById("description"),
     visibilityStatus = document.querySelector(".visibility-text"),
     airQuality = document.querySelector(".air-quality"),
     airQualityStatus = document.querySelector(".quality-text"),
-    weatherCards = document.querySelector("#weather-card");
+    weatherCards = document.querySelector("#weather-card"),
+    hourCards = document.querySelector("#hour-card");
+const hourbutton = document.getElementById("forecastHour");
 
 
 let currentCity = "";
@@ -65,7 +67,7 @@ function getPublicIp() {
         .then((data) => {
             console.log(data);
             currentCity = data.currentCity;
-            //getWeatherData(data.city);
+           //getWeatherData(data.city);
         });
 }
 
@@ -99,12 +101,9 @@ function getWeatherData(city) {
             sunRise.innerText = formatTime(today.sunrise);
             sunSet.innerText = formatTime(today.sunset);
             mainIcon.src = getIcon(today.icon);
-            updateForecast(data.days[0].hours, "day");
-            updateForecast(data.days, "week");
+            updateForecastWeek(data.days, "week");
+            updateForecastHour(data.days[0].hours, "day");
         });
-
-
-
 }
 
 //function to measure uv index status
@@ -241,21 +240,25 @@ function getDayName(date) {
     return days[day.getDay()];
 }
 
-//Function to get hour of a day
 function getHour(time) {
-    let hour = time.split(":")[0];
+    let hour = Number(time.split(":")[0]); // Convert hour to a number for comparison
     let min = time.split(":")[1];
 
-    if (hour > 12) {
-        hour = hour - 12;
-        return `$[hour] PM`;
+    if (hour < 12) {
+        if (hour === 0) {
+            hour = 12; // Convert 0 to 12 for AM
+        }
+        return `${hour} AM`;
+    } else {
+        if (hour > 12) {
+            hour = hour - 12; // Convert 24-hour format to 12-hour format for PM
+        }
+        return `${hour} PM`;
     }
-    else
-        return `$[hour] AM`;
-
 }
-//function to update forecast for hours or days
-function updateForecast(data, type) {
+
+//function to update forecast for days
+function updateForecastWeek(data, type) {
     weatherCards.innerHTML = "";
 
     let day = 0;
@@ -289,5 +292,43 @@ function updateForecast(data, type) {
         `;
         weatherCards.appendChild(card);
         day++;
+    }
+}
+
+//function to update forecast for hours
+function updateForecastHour(data, type) {
+    hourCards.innerHTML = "";
+
+    let day = 0;
+    let numCards = 0;
+    if (type == "day") {
+        numCards = 24;
+        }
+    for (let i = 0; i < numCards; i += 2) {
+        let card = document.createElement("div");
+        card.classList.add("card");
+        let dayName1 = getHour(data[day].datetime);
+        let dayTemp1 = data[day].temp;
+        let iconCondition1 = data[day].icon;
+        let iconSrc1 = getIcon(iconCondition1);
+
+        let dayName2 = getHour(data[day + 1].datetime);
+        let dayTemp2 = data[day + 1].temp;
+        let iconCondition2 = data[day + 1].icon;
+        let iconSrc2 = getIcon(iconCondition2);
+
+        card.innerHTML = `
+        <h2 class="day-name">${dayName1} - ${dayName2}</h2>
+        <div class="card-icon">
+            <img src="${iconSrc1}" alt="weather image">
+        </div>
+        <div class="day-temp">
+            <h2 class="temp">${dayTemp1}°C - ${dayTemp2}°C</h2>
+        </div>
+        `;
+        card.style.height="130px";
+        card.style.width="100px";
+        hourCards.appendChild(card);
+        day += 2; // Update increment to 2 for accessing data for next pair of hours
     }
 }
