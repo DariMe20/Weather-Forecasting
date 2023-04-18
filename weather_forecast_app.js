@@ -15,8 +15,8 @@ const condition = document.getElementById("description"),
     airQuality = document.querySelector(".air-quality"),
     airQualityStatus = document.querySelector(".quality-text"),
     weatherCards = document.querySelector("#weather-card"),
-    hourCards = document.querySelector("#hour-card");
-const hourbutton = document.getElementById("forecastHour");
+    //hourCards = document.querySelector("#hour-card");
+ hourbutton = document.getElementById("forecastHour");
 
 
 let currentCity = "";
@@ -295,40 +295,4 @@ function updateForecastWeek(data, type) {
     }
 }
 
-//function to update forecast for hours
-function updateForecastHour(data, type) {
-    hourCards.innerHTML = "";
 
-    let day = 0;
-    let numCards = 0;
-    if (type == "day") {
-        numCards = 24;
-        }
-    for (let i = 0; i < numCards; i += 2) {
-        let card = document.createElement("div");
-        card.classList.add("card");
-        let dayName1 = getHour(data[day].datetime);
-        let dayTemp1 = data[day].temp;
-        let iconCondition1 = data[day].icon;
-        let iconSrc1 = getIcon(iconCondition1);
-
-        let dayName2 = getHour(data[day + 1].datetime);
-        let dayTemp2 = data[day + 1].temp;
-        let iconCondition2 = data[day + 1].icon;
-        let iconSrc2 = getIcon(iconCondition2);
-
-        card.innerHTML = `
-        <h2 class="day-name">${dayName1} - ${dayName2}</h2>
-        <div class="card-icon">
-            <img src="${iconSrc1}" alt="weather image">
-        </div>
-        <div class="day-temp">
-            <h2 class="temp">${dayTemp1}°C - ${dayTemp2}°C</h2>
-        </div>
-        `;
-        card.style.height="130px";
-        card.style.width="100px";
-        hourCards.appendChild(card);
-        day += 2; // Update increment to 2 for accessing data for next pair of hours
-    }
-}
