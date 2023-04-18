@@ -16,7 +16,7 @@ const condition = document.getElementById("description"),
     airQualityStatus = document.querySelector(".quality-text"),
     weatherCards = document.querySelector("#weather-card"),
     //hourCards = document.querySelector("#hour-card");
- hourbutton = document.getElementById("forecastHour");
+    hourbutton = document.getElementById("forecastHour");
 
 
 let currentCity = "";
@@ -67,7 +67,7 @@ function getPublicIp() {
         .then((data) => {
             console.log(data);
             currentCity = data.currentCity;
-           //getWeatherData(data.city);
+            //getWeatherData(data.city);
         });
 }
 
@@ -102,7 +102,7 @@ function getWeatherData(city) {
             sunSet.innerText = formatTime(today.sunset);
             mainIcon.src = getIcon(today.icon);
             updateForecastWeek(data.days, "week");
-            updateForecastHour(data.days[0].hours, "day");
+            updateForecastWeek(data.days[0].hours, "day");
         });
 }
 
@@ -265,22 +265,49 @@ function updateForecastWeek(data, type) {
     let numCards = 0;
     if (type == "day") {
         numCards = 24;
-    } else {
-        numCards = 7;
-    }
+        for (let i = 0; i < numCards; i += 3) {
+            let card = document.createElement("div");
+            card.classList.add("card");
+            let dayName1 = getHour(data[day].datetime);
+            let dayTemp1 = data[day].temp;
+            let iconCondition1 = data[day].icon;
+            let iconSrc1 = getIcon(iconCondition1);
 
-    for (let i = 0; i < numCards; i++) {
-        let card = document.createElement("div");
-        card.classList.add("card");
-        let dayName = getHour(data[day].datetime);
-        if (type == "week") {
-            dayName = getDayName(data[day].datetime);
+            let dayName2 = getHour(data[day + 3].datetime);
+            let dayTemp2 = data[day + 3].temp;
+            let iconCondition2 = data[day + 3].icon;
+            let iconSrc2 = getIcon(iconCondition2);
+
+            card.innerHTML = `
+            <h2 class="day-name">${dayName1} - ${dayName2}</h2>
+            <div class="card-icon">
+                <img src="${iconSrc1}" alt="weather image">
+            </div>
+            <div class="day-temp">
+                <h2 class="temp">${dayTemp1}°C - ${dayTemp2}°C</h2>
+            </div>
+            `;
+            card.style.height = "120px";
+            card.style.width = "100px";
+            weatherCards.appendChild(card);
+            day += 4; // Update increment to 2 for accessing data for next pair of hours
         }
-        let dayTemp = data[day].temp;
-        let iconCondition = data[day].icon;
-        let iconSrc = getIcon(iconCondition);
+    }
+    else {
+        numCards = 7;
 
-        card.innerHTML = `
+
+        for (let i = 0; i < numCards; i++) {
+            let card = document.createElement("div");
+            card.classList.add("card");
+            if (type == "week") {
+                dayName = getDayName(data[day].datetime);
+            }
+            let dayTemp = data[day].temp;
+            let iconCondition = data[day].icon;
+            let iconSrc = getIcon(iconCondition);
+
+            card.innerHTML = `
         <h2 class="day-name">${dayName}</h2>
         <div class="card-icon">
             <img src="${iconSrc}" alt="weather image">
@@ -290,9 +317,46 @@ function updateForecastWeek(data, type) {
             <span class="temp-unit">°C</span>
         </div>
         `;
-        weatherCards.appendChild(card);
-        day++;
+            weatherCards.appendChild(card);
+            day++;
+        }
     }
 }
 
+// //function to update forecast for hours
+// function updateForecastHour(data, type) {
+//     weatherCards.innerHTML = "";
 
+//     let day = 0;
+//     let numCards = 0;
+//     if (type == "day") {
+//         numCards = 24;
+//         }
+//     for (let i = 0; i < numCards; i += 3) {
+//         let card = document.createElement("div");
+//         card.classList.add("card");
+//         let dayName1 = getHour(data[day].datetime);
+//         let dayTemp1 = data[day].temp;
+//         let iconCondition1 = data[day].icon;
+//         let iconSrc1 = getIcon(iconCondition1);
+
+//         let dayName2 = getHour(data[day + 3].datetime);
+//         let dayTemp2 = data[day + 3].temp;
+//         let iconCondition2 = data[day + 3].icon;
+//         let iconSrc2 = getIcon(iconCondition2);
+
+//         card.innerHTML = `
+//         <h2 class="day-name">${dayName1} - ${dayName2}</h2>
+//         <div class="card-icon">
+//             <img src="${iconSrc1}" alt="weather image">
+//         </div>
+//         <div class="day-temp">
+//             <h2 class="temp">${dayTemp1}°C - ${dayTemp2}°C</h2>
+//         </div>
+//         `;
+//         card.style.height="120px";
+//         card.style.width="100px";
+//         weatherCards.appendChild(card);
+//         day += 4; // Update increment to 2 for accessing data for next pair of hours
+//     }
+// }
