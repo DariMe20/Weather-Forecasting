@@ -1,5 +1,5 @@
 :root{
-    --primary-clr: rgb(20, 51, 207);
+    --primary-clr: rgb(27, 86, 236);
 }
 *{
     margin:0;
@@ -41,6 +41,9 @@ img{
 
 
 .header_search{
+    
+    width:fit-content;
+    margin: auto;
     display:flex;
     flex-direction: row;
     align-items: center;
@@ -52,7 +55,7 @@ img{
 .header_search input{
     width:100%;
     height: 30px;
-    border: 1px solid #80858a;
+    border:2px solid  rgba(247, 247, 255, 0.815);
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     padding:0 15px;
@@ -67,12 +70,13 @@ img{
 }
 
 .header_search button{
+    border:2px solid  rgba(247, 247, 255, 0.815);
     min-width: 30px;
     height:30px;
-    border:none;
+    /* border:none; */
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    background-color:  rgb(26, 40, 108);
+    background-color: var(--primary-clr);
     cursor:pointer;
     font-size: 14px;
     color:white;
@@ -97,7 +101,8 @@ img{
     height: fit-content;
     padding:25px;
     right:15px;
-    background-image: linear-gradient(rgba(253, 253, 253, 0.815),rgba(125, 181, 215, 0.8));
+    /* background-image: linear-gradient(rgba(253, 253, 253, 0.815),rgba(125, 181, 215, 0.8)); */
+    background: rgb(172, 183, 205,0.7);
     
 
 }
@@ -110,7 +115,10 @@ img{
     gap:20px;
     text-align: center;
 } 
-
+.todayInfo-container h4{
+    color:white;
+    font-weight: 700;
+}
 .todayInfo-container .cards .card2{
     width:fit-content;
     height:80px;
@@ -124,7 +132,7 @@ img{
 }
 
 .card2 .card-heading{
-    color: #c2c2c2;
+    color: #9d9c9c;
     font-size: 13px;
 }
 
@@ -204,12 +212,11 @@ img{
     display:flex;
     flex-direction: column;
     width:100%;
-    
     height: fit-content;
     border-radius: 30px;
     padding-bottom: 40px;
-    background-color: rgba(122, 177, 255, 0.884);
-    border:2px solid  rgba(247, 247, 255, 0.815);
+    /* background-color: rgba(122, 177, 255, 0.884); */
+    /* border:2px solid  rgba(247, 247, 255, 0.815); */
 }
 
 .lower-side nav{
@@ -226,7 +233,7 @@ nav .option{
 
 .option button{
     border:none;
-    background:none;
+   
     border-radius: 15px;
     font-size: 16px;
     font-weight: 600;
@@ -242,15 +249,17 @@ nav .option{
 
 }
 .weekDays-container{
+    border:2px solid  rgba(247, 247, 255, 0.815);
+    border-radius: 50px;
+    background: rgb(172, 183, 205,0.7);
     display:flex;
     flex-wrap:wrap;
     flex-direction: row;
     position: relative;
     height:fit-content;
-    top:25px;
     justify-content: center;
     align-items: center;
-    padding:25px;
+    padding:15px;
     margin:auto;
 }
 
@@ -268,17 +277,17 @@ nav .option{
 
 
 .cards .card{
-    width:90px;
+    width:100px;
     height:120px;
     border-radius: 20px;
     color: #1a1a1a;
     background-color: #fff;
     text-align: center;
-    
+    padding:2px;
     display: flex;
     flex-direction: column;
     position:relative;
-    top:10px;
+    top:0px;
     align-items: center;
     justify-content: space-between;
 }
@@ -294,6 +303,7 @@ nav .option{
 }
 
 .card .card-temp{
+    padding:1px;
     font-size: 12px;
     display: flex;
     align-items: center;

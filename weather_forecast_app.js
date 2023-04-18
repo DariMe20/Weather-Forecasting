@@ -30,9 +30,6 @@ let hourlyorWeek = "week";
 
 function getDateTime() {
     let now = new Date();
-    let timezoneOffset = now.getTimezoneOffset() * 60000; // Convert to milliseconds
-    now = new Date(now.getTime() + timezoneOffset); // Add timezone offset
-
     let hour = now.getHours();
     let minute = now.getMinutes();
 
@@ -57,7 +54,7 @@ function getDateTime() {
     return `${dayString}, ${hour}:${minute}`;
 }
 
-//date.innerText = getDateTime();
+date.innerText = getDateTime();
 //update Time every second
 setInterval(() => {
     date.innerText = getDateTime();
@@ -73,7 +70,7 @@ function getPublicIp() {
         .then((data) => {
             console.log(data);
             currentCity = data.city;
-           getWeatherData(data.city, hourlyorWeek);
+            getWeatherData(data.city, hourlyorWeek);
         });
 }
 
@@ -82,14 +79,20 @@ getPublicIp();
 //function to get weather data 
 
 
-function getWeatherData(city) {
+function getWeatherData(city, hourlyorWeek) {
     const apiKey = "USNFBZ3G26K6LX3UZHYK9EHTN";
     fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=metric&key=${apiKey}&contentType=json`,
         {
             method: "GET",
         }
     )
-        .then((response) => response.json())
+        .then((response) => {
+            // Check for 400 error status code
+            if (response.status === 400) {
+                throw new Error("Invalid city name");
+            }
+            return response.json();
+        })
         .then((data) => {
             let today = data.currentConditions;
             date.innerText = (getDateTime(data.datetime));
@@ -109,16 +112,19 @@ function getWeatherData(city) {
             sunRise.innerText = formatTime(today.sunrise);
             sunSet.innerText = formatTime(today.sunset);
             mainIcon.src = getIcon(today.icon);
-            
+
             if (hourlyorWeek == "hourly")
                 updateForecastWeek(data.days[0].hours, "day");
             else
                 updateForecastWeek(data.days, "week");
-            
+
         })
         .catch((err) => {
-            alert("City not found");
-        })
+            // Check if the error is related to invalid city name
+            if (err.message === "Invalid city name") {
+                alert("Invalid city name");
+            };
+        });
 }
 
 //function to measure uv index status
@@ -243,12 +249,12 @@ function getIcon(condition) {
 }
 
 //function to upgrade page background based on weather condition
-function updateBackground(condition){
+function updateBackground(condition) {
     //const body = document.querySelector("body");
     let bckd = "";
     const body = document.querySelector("body");
     if (condition === "partly-cloudy-day") {
-       bckd = "background/sunny_cloud.jpg";
+        bckd = "background/sunny_cloud.jpg";
     }
     else if (condition === "partly-cloudy-night") {
         bckd = "background/cloudy_night.jpg";
@@ -269,10 +275,10 @@ function updateBackground(condition){
         bckd = "background/snow.jpg";
     }
     else
-        bckd ="background/clear_day.jpg";
+        bckd = "background/clear_day.jpg";
 
     body.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${bckd})`;
-    
+
 }
 //Function to get name of a day
 function getDayName(date) {
@@ -361,8 +367,8 @@ function updateForecastWeek(data, type) {
                     <h2 class="temp">${dayTemp1}°C - ${dayTemp2}°C</h2>
                 </div>
                 `;
-            card.style.height = "120px";
-            card.style.width = "100px";
+            // card.style.height = "130px";
+            // card.style.width = "110px";
             weatherCards.appendChild(card);
             day += 4;
         }
@@ -379,18 +385,18 @@ weekBtn.addEventListener("click", () => {
 });
 
 //Toggle function 
-function changeTimeSpan(unit){
-    if(hourlyorWeek != unit){
+function changeTimeSpan(unit) {
+    if (hourlyorWeek != unit) {
         hourlyorWeek = unit;
-        if(unit == "hourly"){
-           hourBtn.classList.add("active"); 
-           weekBtn.classList.remove("active");
+        if (unit == "hourly") {
+            hourBtn.classList.add("active");
+            weekBtn.classList.remove("active");
         }
-        else{
-            weekBtn.classList.add("active"); 
+        else {
+            weekBtn.classList.add("active");
             hourBtn.classList.remove("active");
         }
-        getWeatherData(currentCity,hourlyorWeek);
+        getWeatherData(currentCity, hourlyorWeek);
 
     }
 }
@@ -398,17 +404,18 @@ function changeTimeSpan(unit){
 searchForm.addEventListener("submit", (e) => {
     e.preventDefault();
     let location = search.value;
-    if(location){
+    if (location) {
         currentCity = location;
-        getWeatherData(currentCity,hourlyorWeek);
+        getWeatherData(currentCity, hourlyorWeek);
     }
 });
 
 SearchBtn.addEventListener("click", (e) => {
     e.preventDefault();
     let location = search.value;
-    if(location){
+    if (location) {
         currentCity = location;
-        getWeatherData(currentCity,hourlyorWeek);
+        date.innerText = getDateTime();
+        getWeatherData(currentCity, hourlyorWeek);
     }
 });
