@@ -68,7 +68,7 @@ function getPublicIp() {
         .then((data) => {
             console.log(data);
             currentCity = data.currentCity;
-            //getWeatherData(data.city, hourlyorWeek);
+           //getWeatherData(data.city, hourlyorWeek);
         });
 }
 
@@ -110,9 +110,9 @@ function getWeatherData(city) {
                 updateForecastWeek(data.days, "week");
             
         })
-        .catch((err) => {
-            alert("City not found");
-        })
+        // .catch((err) => {
+        //     alert("City not found");
+        // })
 }
 
 //function to measure uv index status
@@ -205,7 +205,7 @@ function getIcon(condition) {
     if (condition == "partly-cloudy-day") {
         return "photos/sun_clouds.png";
     }
-    else if (condition == "partly-cludy-night") {
+    else if (condition == "partly-cloudy-night") {
         return "photos/coudy_night.png";
     }
     else if (condition == "rain") {
@@ -240,30 +240,32 @@ function getIcon(condition) {
 function updateBackground(condition){
     //const body = document.querySelector("body");
     let bckd = "";
-    if (condition == "partly-cloudy-day") {
+    const body = document.querySelector("body");
+    if (condition === "partly-cloudy-day") {
        bckd = "background/sunny_cloud.jpg";
     }
-    else if (condition == "partly-cludy-night") {
+    else if (condition === "partly-cloudy-night") {
         bckd = "background/cloudy_night.jpg";
     }
-    else if (condition == "rain") {
+    else if (condition === "rain") {
         bckd = "background/rain.jpg";
     }
-    else if (condition == "clear-day") {
+    else if (condition === "clear-day") {
         bckd = "background/clear_day.jpg";
     }
-    else if (condition == "clear-night") {
+    else if (condition === "clear-night") {
         bckd = "background/clear_night.jpg";
     }
-    else if (condition == "cloudy") {
+    else if (condition === "cloudy") {
         bckd = "background/cloudy_night.jpg";
     }
-    else if (condition == "snow") {
+    else if (condition === "snow") {
         bckd = "background/snow.jpg";
     }
-    bckd = "background/clouds2.jpg";
+    else
+        bckd ="background/clear_day.jpg";
 
-    body.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5), url(${bckd}))`;
+    body.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${bckd})`;
     
 }
 //Function to get name of a day
