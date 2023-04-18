@@ -15,7 +15,7 @@ const condition = document.getElementById("description"),
     airQuality = document.querySelector(".air-quality"),
     airQualityStatus = document.querySelector(".quality-text"),
     weatherCards = document.querySelector("#weather-card"),
-    hourBtn = document.querySelector(".hourly");
+    hourBtn = document.querySelector(".hourly"),
     weekBtn = document.querySelector(".week"),
     searchForm = document.querySelector("#search"),
     search = document.querySelector("#query");
@@ -28,21 +28,23 @@ let hourlyorWeek = "week";
 //Update date time 
 
 function getDateTime() {
-    let now = new Date(),
-        hour = now.getHours(),
-        minute = now.getMinutes();
+    let now = new Date();
+    let timezoneOffset = now.getTimezoneOffset() * 60000; // Convert to milliseconds
+    now = new Date(now.getTime() + timezoneOffset); // Add timezone offset
+
+    let hour = now.getHours();
+    let minute = now.getMinutes();
 
     let days = [
         "Sunday",
         "Monday",
         "Tuesday",
         "Wednesday",
-        "Thrusday",
+        "Thursday",
         "Friday",
         "Saturday"
     ];
 
-    //hour = hour % 12;
     if (hour < 10) {
         hour = "0" + hour;
     }
@@ -54,7 +56,7 @@ function getDateTime() {
     return `${dayString}, ${hour}:${minute}`;
 }
 
-date.innerText = getDateTime();
+//date.innerText = getDateTime();
 //update Time every second
 setInterval(() => {
     date.innerText = getDateTime();
@@ -70,7 +72,7 @@ function getPublicIp() {
         .then((data) => {
             console.log(data);
             currentCity = data.city;
-           //getWeatherData(data.city, hourlyorWeek);
+           getWeatherData(data.city, hourlyorWeek);
         });
 }
 
@@ -89,6 +91,7 @@ function getWeatherData(city) {
         .then((response) => response.json())
         .then((data) => {
             let today = data.currentConditions;
+            date.innerText = (getDateTime(data.datetime));
             temp.innerText = today.temp;
             currentLocation.innerText = data.resolvedAddress;
             condition.innerText = today.conditions;
@@ -112,9 +115,9 @@ function getWeatherData(city) {
                 updateForecastWeek(data.days, "week");
             
         })
-        // .catch((err) => {
-        //     alert("City not found");
-        // })
+        .catch((err) => {
+            alert("City not found");
+        })
 }
 
 //function to measure uv index status
@@ -398,5 +401,5 @@ searchForm.addEventListener("submit", (e) => {
         currentCity = location;
         getWeatherData(currentCity,hourlyorWeek);
     }
-})
+});
 
