@@ -99,9 +99,11 @@ function getWeatherData(city) {
             updateHumidityStatus(today.humidity);
             updateVisibilityStatus(today.visibility);
             updateAirQualityStatus(today.winddir);
+            updateBackground(today.icon);
             sunRise.innerText = formatTime(today.sunrise);
             sunSet.innerText = formatTime(today.sunset);
             mainIcon.src = getIcon(today.icon);
+            
             if (hourlyorWeek == "hourly")
                 updateForecastWeek(data.days[0].hours, "day");
             else
@@ -190,6 +192,7 @@ function updateAirQualityStatus(airQuality) {
     }
 }
 
+//function to format time
 function formatTime(time) {
     let hour = time.split(":")[0];
     let minute = time.split(":")[1];
@@ -197,6 +200,7 @@ function formatTime(time) {
     return newTime;
 }
 
+//Function to update icon based on weather data
 function getIcon(condition) {
     if (condition == "partly-cloudy-day") {
         return "photos/sun_clouds.png";
@@ -232,6 +236,43 @@ function getIcon(condition) {
         return "photos/cloudy.png";
 }
 
+//function to upgrade page background based on weather condition
+function updateBackground(condition){
+    let bckd = "";
+    if (condition == "partly-cloudy-day") {
+        return "photos/sun_clouds.png";
+    }
+    else if (condition == "partly-cludy-night") {
+        return "photos/coudy_night.png";
+    }
+    else if (condition == "rain") {
+        return "photos/rainy2.png";
+    }
+    else if (condition == "clear-day") {
+        return "photos/sunny.png";
+    }
+    else if (condition == "clear-night") {
+        return "photos/moon.png";
+    }
+    else if (condition == "cloudy") {
+        return "photos/cloudy.png";
+    }
+    else if (condition == "snow") {
+        return "photos/snowy.png";
+    }
+    else if (condition == "wind") {
+        return "photos/windy.png";
+    }
+    else if (condition == "fog") {
+        return "photos/cloudy2.png";
+    }
+    else if (condition == "thunder-rain") {
+        return "photos/thunderstorm.png";
+    }
+    else
+        return "photos/cloudy.png";
+
+}
 //Function to get name of a day
 function getDayName(date) {
     let day = new Date(date);
@@ -247,6 +288,7 @@ function getDayName(date) {
     return days[day.getDay()];
 }
 
+//Function to convert hour to 12 hour time 
 function getHour(time) {
     let hour = Number(time.split(":")[0]); // Convert hour to a number for comparison
     let min = time.split(":")[1];
@@ -264,7 +306,8 @@ function getHour(time) {
     }
 }
 
-//function to update forecast for days
+
+//function to update forecast for hours and weeks
 function updateForecastWeek(data, type) {
     weatherCards.innerHTML = "";
 
@@ -325,44 +368,7 @@ function updateForecastWeek(data, type) {
     }
 }
 
-// //function to update forecast for hours
-// function updateForecastHour(data, type) {
-//     weatherCards.innerHTML = "";
-
-//     let day = 0;
-//     let numCards = 0;
-//     if (type == "day") {
-//         numCards = 24;
-//         }
-//     for (let i = 0; i < numCards; i += 3) {
-//         let card = document.createElement("div");
-//         card.classList.add("card");
-//         let dayName1 = getHour(data[day].datetime);
-//         let dayTemp1 = data[day].temp;
-//         let iconCondition1 = data[day].icon;
-//         let iconSrc1 = getIcon(iconCondition1);
-
-//         let dayName2 = getHour(data[day + 3].datetime);
-//         let dayTemp2 = data[day + 3].temp;
-//         let iconCondition2 = data[day + 3].icon;
-//         let iconSrc2 = getIcon(iconCondition2);
-
-//         card.innerHTML = `
-//         <h2 class="day-name">${dayName1} - ${dayName2}</h2>
-//         <div class="card-icon">
-//             <img src="${iconSrc1}" alt="weather image">
-//         </div>
-//         <div class="day-temp">
-//             <h2 class="temp">${dayTemp1}°C - ${dayTemp2}°C</h2>
-//         </div>
-//         `;
-//         card.style.height="120px";
-//         card.style.width="100px";
-//         weatherCards.appendChild(card);
-//         day += 4; // Update increment to 2 for accessing data for next pair of hours
-//     }
-// }
-
+//Button event listeners for toggle
 hourBtn.addEventListener("click", () => {
     changeTimeSpan("hourly");
 });
@@ -371,6 +377,7 @@ weekBtn.addEventListener("click", () => {
     changeTimeSpan("week");
 });
 
+//Toggle function 
 function changeTimeSpan(unit){
     if(hourlyorWeek != unit){
         hourlyorWeek = unit;
@@ -382,7 +389,7 @@ function changeTimeSpan(unit){
             weekBtn.classList.add("active"); 
             hourBtn.classList.remove("active");
         }
-        //getWeatherData(currentCity,hourlyorWeek);
+        getWeatherData(currentCity,hourlyorWeek);
 
     }
 }
