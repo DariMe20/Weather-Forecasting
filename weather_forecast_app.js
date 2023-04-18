@@ -240,10 +240,10 @@ function getIcon(condition) {
 function updateBackground(condition){
     let bckd = "";
     if (condition == "partly-cloudy-day") {
-        return "photos/sun_clouds.png";
+       bckd = "background/sunny_cloud.jpg";
     }
     else if (condition == "partly-cludy-night") {
-        return "photos/coudy_night.png";
+        bckd = "background/sunny_cloud.jpg";;
     }
     else if (condition == "rain") {
         return "photos/rainy2.png";

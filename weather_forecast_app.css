@@ -1,5 +1,5 @@
 :root{
-    --primary-clr: rgb(20, 51, 207);
+    --primary-clr: rgb(20, 117, 207);
 }
 *{
     margin:0;
@@ -14,7 +14,6 @@ body{
     
     font-family:Arial, Helvetica, sans-serif;
     background-color: var(--primary-clr);
-    background-image: url(https://wallpaperboat.com/wp-content/uploads/2021/04/14/75026/sunny-day-08.jpg);
     transition: background-image 0.3s ease;
     padding:20px;
 }
