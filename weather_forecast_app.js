@@ -80,7 +80,7 @@ getPublicIp();
 
 
 function getWeatherData(city, hourlyorWeek) {
-    const apiKey = "USNFBZ3G26K6LX3UZHYK9EHTN";
+    const apiKey = "FHGF2CKEC95CALF5SXU4D4W28";
     fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=metric&key=${apiKey}&contentType=json`,
         {
             method: "GET",

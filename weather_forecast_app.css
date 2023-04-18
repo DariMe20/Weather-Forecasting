@@ -314,21 +314,25 @@ nav .option{
 
   
   /* Media query for smaller screens */
-  @media screen and (max-width: 950px) {
+  @media screen and (max-width: 750px) {
   
     body{
         height:auto;
         width:auto;
+        justify-content: center;
+        align-items: center;
+        overflow: visible;
     }
   .wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width:95%;
+    width:100%;
+    margin: auto;
     height:auto;
-    overflow: hidden;
-    
+    overflow: visible;
+    margin-bottom: 0;
   }
 
   .header_search{
@@ -349,12 +353,13 @@ nav .option{
     display:flex;
     position: relative;
     flex-direction: column-reverse;
- 
+    align-items: center;
     margin-bottom: 20px;
+    width: 100%;
 }
 
 .todayInfo-container{
-    width:100%;
+    width:fit-content;
     padding:25px;
     right:0;
     top:30px;
@@ -381,10 +386,9 @@ nav .option{
     font-size: 10px;
 }
 .currentWeather-container{
-    width: 100%;
+    width:calc(100% + 20px);
     padding:25px 25px 0px 25px;
     height:auto;
-   
     left:0px;
 }
 .currentWeather-container h2{
@@ -408,7 +412,8 @@ nav .option{
     top:30px;
     position: relative;
     width:auto;
-    padding-bottom: 50px;
+    padding-bottom: 0px;
+    margin-bottom:35px;
     align-items: center;
     justify-content: center;
 }
