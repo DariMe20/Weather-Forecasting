@@ -18,7 +18,8 @@ const condition = document.getElementById("description"),
     hourBtn = document.querySelector(".hourly"),
     weekBtn = document.querySelector(".week"),
     searchForm = document.querySelector("#search"),
-    search = document.querySelector("#query");
+    search = document.querySelector("#query"),
+    SearchBtn = document.querySelector(".i");
 
 
 let currentCity = "";
@@ -403,3 +404,11 @@ searchForm.addEventListener("submit", (e) => {
     }
 });
 
+SearchBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    let location = search.value;
+    if(location){
+        currentCity = location;
+        getWeatherData(currentCity,hourlyorWeek);
+    }
+});
