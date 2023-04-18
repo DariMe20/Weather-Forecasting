@@ -15,11 +15,12 @@ const condition = document.getElementById("description"),
     airQuality = document.querySelector(".air-quality"),
     airQualityStatus = document.querySelector(".quality-text"),
     weatherCards = document.querySelector("#weather-card"),
-    //hourCards = document.querySelector("#hour-card");
-    hourbutton = document.getElementById("forecastHour");
+    hourBtn = document.querySelector(".hourly");
+weekBtn = document.querySelector(".week");
 
 
 let currentCity = "";
+let hourlyorWeek = "week";
 
 
 //Update date time 
@@ -67,7 +68,7 @@ function getPublicIp() {
         .then((data) => {
             console.log(data);
             currentCity = data.currentCity;
-            //getWeatherData(data.city);
+            //getWeatherData(data.city, hourlyorWeek);
         });
 }
 
@@ -101,8 +102,11 @@ function getWeatherData(city) {
             sunRise.innerText = formatTime(today.sunrise);
             sunSet.innerText = formatTime(today.sunset);
             mainIcon.src = getIcon(today.icon);
-            updateForecastWeek(data.days, "week");
-            updateForecastWeek(data.days[0].hours, "day");
+            if (hourlyorWeek == "hourly")
+                updateForecastWeek(data.days[0].hours, "day");
+            else
+                updateForecastWeek(data.days, "week");
+
         });
 }
 
@@ -263,46 +267,16 @@ function updateForecastWeek(data, type) {
 
     let day = 0;
     let numCards = 0;
-    if (type == "day") {
-        numCards = 24;
-        for (let i = 0; i < numCards; i += 3) {
-            let card = document.createElement("div");
-            card.classList.add("card");
-            let dayName1 = getHour(data[day].datetime);
-            let dayTemp1 = data[day].temp;
-            let iconCondition1 = data[day].icon;
-            let iconSrc1 = getIcon(iconCondition1);
+    if (type == "day") { numCards = 24; }
+    else { numCards = 7; }
 
-            let dayName2 = getHour(data[day + 3].datetime);
-            let dayTemp2 = data[day + 3].temp;
-            let iconCondition2 = data[day + 3].icon;
-            let iconSrc2 = getIcon(iconCondition2);
+    for (let i = 0; i < numCards; i++) {
+        let card = document.createElement("div");
+        card.classList.add("card");
+        dayName = getHour(data[day].datetime);
+        if (type == "week") {
+            dayName = getDayName(data[day].datetime);
 
-            card.innerHTML = `
-            <h2 class="day-name">${dayName1} - ${dayName2}</h2>
-            <div class="card-icon">
-                <img src="${iconSrc1}" alt="weather image">
-            </div>
-            <div class="day-temp">
-                <h2 class="temp">${dayTemp1}°C - ${dayTemp2}°C</h2>
-            </div>
-            `;
-            card.style.height = "120px";
-            card.style.width = "100px";
-            weatherCards.appendChild(card);
-            day += 4; // Update increment to 2 for accessing data for next pair of hours
-        }
-    }
-    else {
-        numCards = 7;
-
-
-        for (let i = 0; i < numCards; i++) {
-            let card = document.createElement("div");
-            card.classList.add("card");
-            if (type == "week") {
-                dayName = getDayName(data[day].datetime);
-            }
             let dayTemp = data[day].temp;
             let iconCondition = data[day].icon;
             let iconSrc = getIcon(iconCondition);
@@ -319,6 +293,31 @@ function updateForecastWeek(data, type) {
         `;
             weatherCards.appendChild(card);
             day++;
+        }
+        if (type == "day") {
+            let dayName1 = getHour(data[day].datetime);
+            let dayTemp1 = data[day].temp;
+            let iconCondition1 = data[day].icon;
+            let iconSrc1 = getIcon(iconCondition1);
+
+            let dayName2 = getHour(data[day + 3].datetime);
+            let dayTemp2 = data[day + 3].temp;
+            let iconCondition2 = data[day + 3].icon;
+            let iconSrc2 = getIcon(iconCondition2);
+
+            card.innerHTML = `
+                <h2 class="day-name">${dayName1} - ${dayName2}</h2>
+                <div class="card-icon">
+                    <img src="${iconSrc1}" alt="weather image">
+                </div>
+                <div class="day-temp">
+                    <h2 class="temp">${dayTemp1}°C - ${dayTemp2}°C</h2>
+                </div>
+                `;
+            card.style.height = "120px";
+            card.style.width = "100px";
+            weatherCards.appendChild(card);
+            day += 4;
         }
     }
 }
@@ -359,4 +358,16 @@ function updateForecastWeek(data, type) {
 //         weatherCards.appendChild(card);
 //         day += 4; // Update increment to 2 for accessing data for next pair of hours
 //     }
+// }
+
+hourBtn.addEventListener("click", () => {
+    changeTimeSpan("hourly");
+});
+
+weekBtn.addEventListener("click", () => {
+    changeTimeSpan("week");
+});
+
+// function changeTimeSpan(unit){
+//     if(hourlyorWeek)
 // }
