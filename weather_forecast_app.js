@@ -106,8 +106,11 @@ function getWeatherData(city) {
                 updateForecastWeek(data.days[0].hours, "day");
             else
                 updateForecastWeek(data.days, "week");
-
-        });
+            
+        })
+        .catch((err) => {
+            alert("City not found");
+        })
 }
 
 //function to measure uv index status
@@ -368,6 +371,18 @@ weekBtn.addEventListener("click", () => {
     changeTimeSpan("week");
 });
 
-// function changeTimeSpan(unit){
-//     if(hourlyorWeek)
-// }
+function changeTimeSpan(unit){
+    if(hourlyorWeek != unit){
+        hourlyorWeek = unit;
+        if(unit == "hourly"){
+           hourBtn.classList.add("active"); 
+           weekBtn.classList.remove("active");
+        }
+        else{
+            weekBtn.classList.add("active"); 
+            hourBtn.classList.remove("active");
+        }
+        //getWeatherData(currentCity,hourlyorWeek);
+
+    }
+}
