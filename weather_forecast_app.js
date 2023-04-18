@@ -238,40 +238,33 @@ function getIcon(condition) {
 
 //function to upgrade page background based on weather condition
 function updateBackground(condition){
+    //const body = document.querySelector("body");
     let bckd = "";
     if (condition == "partly-cloudy-day") {
        bckd = "background/sunny_cloud.jpg";
     }
     else if (condition == "partly-cludy-night") {
-        bckd = "background/sunny_cloud.jpg";;
+        bckd = "background/cloudy_night.jpg";
     }
     else if (condition == "rain") {
-        return "photos/rainy2.png";
+        bckd = "background/rain.jpg";
     }
     else if (condition == "clear-day") {
-        return "photos/sunny.png";
+        bckd = "background/clear_day.jpg";
     }
     else if (condition == "clear-night") {
-        return "photos/moon.png";
+        bckd = "background/clear_night.jpg";
     }
     else if (condition == "cloudy") {
-        return "photos/cloudy.png";
+        bckd = "background/cloudy_night.jpg";
     }
     else if (condition == "snow") {
-        return "photos/snowy.png";
+        bckd = "background/snow.jpg";
     }
-    else if (condition == "wind") {
-        return "photos/windy.png";
-    }
-    else if (condition == "fog") {
-        return "photos/cloudy2.png";
-    }
-    else if (condition == "thunder-rain") {
-        return "photos/thunderstorm.png";
-    }
-    else
-        return "photos/cloudy.png";
+    bckd = "background/clouds2.jpg";
 
+    body.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5), url(${bckd}))`;
+    
 }
 //Function to get name of a day
 function getDayName(date) {
