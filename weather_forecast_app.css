@@ -11,15 +11,17 @@ body{
     flex-wrap: wrap;
     justify-content: center;
     flex-direction: column;
-    
     font-family:Arial, Helvetica, sans-serif;
     background-color: var(--primary-clr);
     background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.5)),url("background/clear_day2.jpg");
-    background-position:center;
+    background-position:center center;
     background-size:cover;
     transition: background-image 0.3s ease;
     padding:20px;
-    height: 100vh;
+    background-repeat: no-repeat;
+    height:100vh;
+   
+   
 }
 img{
     width:100%;
@@ -28,13 +30,12 @@ img{
 
 .wrapper{
     display:flex;
+    flex-wrap: nowrap;
     flex-direction: column;
     height: fit-content;
-    overflow: auto;
     width:950px;
     margin:auto;
     border-radius: 20px;
-   overflow: hidden;
     /* border:1px solid rgb(60, 60, 60);  */
     /* background-color: rgba(255, 255, 255, 0.315); */
 }
@@ -311,3 +312,105 @@ nav .option{
 }
 
 
+  
+  /* Media query for smaller screens */
+  @media screen and (max-width: 950px) {
+  
+    body{
+        height:auto;
+        width:auto;
+    }
+  .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width:95%;
+    height:auto;
+    overflow: hidden;
+    
+  }
+
+  .header_search{
+    
+    width:fit-content;
+    margin: auto;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-top:15px;
+}
+
+  .upper-side{
+    flex-wrap: wrap;
+    display:flex;
+    position: relative;
+    flex-direction: column-reverse;
+ 
+    margin-bottom: 20px;
+}
+
+.todayInfo-container{
+    width:100%;
+    padding:25px;
+    right:0;
+    top:30px;
+}
+.todayInfo-container .cards{
+    gap:10px;
+} 
+.todayInfo-container h4{
+    color:white;
+    font-weight: 700;
+}
+.todayInfo-container .cards .card2{
+    width:fit-content;
+    height:70px;
+    border-radius: 20px;
+    color:#1a1a1a;
+    background-color: #fff;
+    padding:10px 20px;
+    display:flex;
+    flex-direction: column;
+
+}
+.todayInfo-container .cards .card2 .content{
+    font-size: 10px;
+}
+.currentWeather-container{
+    width: 100%;
+    padding:25px 25px 0px 25px;
+    height:auto;
+   
+    left:0px;
+}
+.currentWeather-container h2{
+    font-size: 20px;
+}
+.temperature #temp{
+    font-size: 30px;
+}
+
+
+.weather-icon #icon{
+    object-fit: cover;
+}
+
+.lower-side{
+    display:flex;
+    flex-direction: column;
+    width:100%;
+    height: auto;
+    border-radius: 30px;
+    top:30px;
+    position: relative;
+    width:auto;
+    padding-bottom: 50px;
+    align-items: center;
+    justify-content: center;
+}
+
+  }
