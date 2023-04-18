@@ -16,7 +16,9 @@ const condition = document.getElementById("description"),
     airQualityStatus = document.querySelector(".quality-text"),
     weatherCards = document.querySelector("#weather-card"),
     hourBtn = document.querySelector(".hourly");
-weekBtn = document.querySelector(".week");
+    weekBtn = document.querySelector(".week"),
+    searchForm = document.querySelector("#search"),
+    search = document.querySelector("#query");
 
 
 let currentCity = "";
@@ -67,7 +69,7 @@ function getPublicIp() {
         .then((response) => response.json())
         .then((data) => {
             console.log(data);
-            currentCity = data.currentCity;
+            currentCity = data.city;
            //getWeatherData(data.city, hourlyorWeek);
         });
 }
@@ -388,3 +390,13 @@ function changeTimeSpan(unit){
 
     }
 }
+
+searchForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let location = search.value;
+    if(location){
+        currentCity = location;
+        getWeatherData(currentCity,hourlyorWeek);
+    }
+})
+
